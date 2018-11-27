@@ -28,6 +28,9 @@ public class Commands implements CommandExecutor {
                 else if (args[0].equalsIgnoreCase("createTeam")) {
                     CommandTeamCreate.invoke(p, args);
                 }
+                else if (args[0].equalsIgnoreCase("leaveteam")) {
+                   CommandTeamLeave.invoke(p, args);
+                }
                 else if (args[0].equalsIgnoreCase("invite")) {
                     CommandInvite.invoke(p, args);
                 }

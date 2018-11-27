@@ -27,12 +27,12 @@ public class StartCountdownScheduler implements Runnable {
         if (seconds >= 10) {
             if (seconds % 5 == 0) shouldPrint = true;
         }
-        else if (seconds < 5) shouldPrint = true;
+        else if (seconds <= 5) shouldPrint = true;
 
         if (shouldPrint) {
             for (Player p : Bukkit.getServer().getOnlinePlayers()) {
                 p.sendMessage(Main.prefix + "§e" + seconds + "§7 Sekunden bis zum Start");
-                p.playSound(p.getLocation(), Sound.BURP, 1.0f, 1.0f);
+                p.playSound(p.getLocation(), Sound.NOTE_STICKS, 1.0f, 1.0f);
 
                 //Send title
                 TitleUtil.sendTitle(p, 5, 20, 5, "§4" + seconds + "§c Sekunden", "§7bis zum Start");
@@ -40,7 +40,7 @@ public class StartCountdownScheduler implements Runnable {
         }
 
         seconds--;
-        if (seconds == 0) {
+        if (seconds == -1) {
             Thread executionThread = new Thread(finishRunnable);
             executionThread.start();
 

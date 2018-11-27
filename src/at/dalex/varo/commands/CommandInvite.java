@@ -16,7 +16,7 @@ public class CommandInvite {
 
     public static void invoke(Player p, String[] args) {
         if (args.length == 1) {
-            ChatUtil.error(p, Main.prefix + "§4ERROR: §cDu musst einen Spieler angeben, " +
+            ChatUtil.error(p, Main.prefix + "§cDu musst einen Spieler angeben, " +
                     "welchen du in dein Team einladen möchtest!");
         }
         else {
