@@ -15,6 +15,10 @@ public class StartCountdownScheduler implements Runnable {
     public StartCountdownScheduler(int secondsToCount, Runnable finishRunnable) {
         this.seconds = secondsToCount;
         this.finishRunnable = finishRunnable;
+
+        //Mark game as RUNNING
+        Main.getInstance().setGameRunning(true);
+
         schedulerTask = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(Main.getInstance(),
                 this, 0, 20L);
     }

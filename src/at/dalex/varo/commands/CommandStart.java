@@ -9,6 +9,9 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 public class CommandStart implements Runnable {
 
     private static StartCountdownScheduler cdScheduler;
@@ -38,10 +41,27 @@ public class CommandStart implements Runnable {
         Location nullLocation = new Location(Main.getInstance().getSpawnManager().getVaroWorld(),
                 0, 0, 0, 0.0f, 0.0f);
 
-        //Teleport all Players
-        for (int i = 0; i < Bukkit.getServer().getOnlinePlayers().size(); i++) {
-            Vector teleportWorldPosition = Main.getInstance().getSpawnManager().getSpawnPositions().get(i);
+        ArrayList<Player> teleportedPlayers = new ArrayList<>();
+        ArrayList<Vector> spawnPositions = Main.getInstance().getSpawnManager().getSpawnPositions();
 
+
+        //Teleport all Players
+        for (int i = 0; i < spawnPositions.size(); i++) {
+            for (Player player : Bukkit.getServer().getOnlinePlayers()) {
+                if (!teleportedPlayers.contains(player)) {
+                    //Create spawn location
+                    Vector pos = spawnPositions.get(i);
+                    Location spawnLocation = new Location(
+                            Main.getInstance().getSpawnManager().getVaroWorld(),
+                            pos.getX(), pos.getY(), pos.getZ());
+
+                    player.teleport(spawnLocation);
+                    teleportedPlayers.add(player);
+
+                    //Set target direction
+                    //Vector lookDir = Main.getInstance().getSpawnManager().
+                }
+            }
         }
     }
 }

@@ -8,6 +8,12 @@ import org.bukkit.entity.Player;
 public class CommandTeamCreate {
 
     public static void invoke(Player p, String[] args) {
+
+        if (Main.getInstance().isGameRunning()) {
+            ChatUtil.error(p, "§cDu kannst kein neues Team erstellen, während das Spiel läuft!");
+            return;
+        }
+
         if (args.length == 1) {
             ChatUtil.error(p, Main.prefix + "§4ERROR: §cDu musst einen Kürzel für dein Team angeben!");
             return;
